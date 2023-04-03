@@ -6,7 +6,7 @@
 
 // 3. Pensez à gérer également les erreurs de saisi dans le jeu.
 
-    const nb = Math.floor(Math.random() * 100);
+    const nb = Math.floor(Math.random() * 100) +1;
 
     process.stdout.write(`Trouvez un nombre entre 1 et 100 : `);
     
