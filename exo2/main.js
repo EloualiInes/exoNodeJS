@@ -59,7 +59,7 @@ const getNotes = () => {
     return res;
 }
 
-getNotes();
+// getNotes();
 
 // --- 3 best student
 
