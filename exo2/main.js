@@ -45,14 +45,21 @@ const getNotes = () => {
         // Extrait les 2 premiers caracteres
         const note = lines[i].slice(0, 2);
         if(!isNaN(note) && parseInt(note, 10) > 17){
-            res.push(parseInt(note, 10) )
+            // Donne l'index du premier espace contenue dans la portion apres les notes
+            const firstSpaceIndex = lines[i].indexOf(' ', 3);
+            // On extrait le nom
+            const name = lines[i].slice(3, firstSpaceIndex);
+            res.push({
+                name : name,
+                note : parseInt(note, 10),
+            } )
         }
     }
     console.log(res);
     return res;
 }
 
-// getNotes();
+getNotes();
 
 // --- 3 best student
 
