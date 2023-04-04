@@ -13,7 +13,7 @@ module.exports.getPriceTTC = (objectHt, TVA = 0.2) => {
     // ON ajoute le price TTC
     for(let i = 0; i < objectHt.length; i++){
         objectHt[i] = {...objectHt[i],
-            priceTTC : objectHt[i].priceHT + (objectHt[i].priceHT * TVA)}
+            priceTTC : parseFloat((objectHt[i].priceHT + (objectHt[i].priceHT * TVA)).toFixed(2))}
     }
     return objectHt;
 }
