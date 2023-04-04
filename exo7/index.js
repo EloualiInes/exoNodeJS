@@ -18,7 +18,7 @@ rl.on("line", (line) => {
   }
   const answer = line.trim();
   for (let i = 0; i < json.students.length; i++) {
-    let regex = new RegExp(`${json.students[i].name}\s*`, "i");
+    let regex = getRegex(json.students[i].name);
     if (regex.test(answer.trim())) {
       const average = moyenne(json.students[i].notes);
       console.log(
@@ -27,6 +27,7 @@ rl.on("line", (line) => {
         }/20`
       );
       studentFind = true;
+      break;
     }
   }
   if (!studentFind) console.log("Aucun étudiant avec ce nom");
@@ -53,3 +54,9 @@ moyenne = (tab) => {
   if (tabValide) return sum / tab.length;
   return -1;
 };
+
+getRegex = (str) => {
+    let regexFinal = "";
+    for(let i = 0; i < str.length; i++) regexFinal += `${str[i]}\\s*`
+    return new RegExp(regexFinal, "i");;
+}
