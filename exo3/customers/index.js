@@ -15,5 +15,6 @@ const priceHT2 = [
 console.log(priceTTC.getPriceTTC(priceHT));
 console.log(priceTTC.getPriceTTC(priceHT,0.3));
 // error
+console.log(priceTTC.getPriceTTC([]));
 console.log(priceTTC.getPriceTTC(priceHT2));
 
