@@ -1,7 +1,7 @@
 
 // Prix TTC = HT + (HT x TVA)
 
-module.exports.getPriceTTC = (objectHt, TVA = 0.2) => {
+getPriceTTCObject = (objectHt, TVA = 0.2) => {
     // Verification tab
     if(!isTabObject(objectHt)) throw new Error("Veuillez fournir un tableau d'objet valide");
     for(let i = 0; i < objectHt.length; i++){
@@ -18,6 +18,14 @@ module.exports.getPriceTTC = (objectHt, TVA = 0.2) => {
     return objectHt;
 }
 
+getPriceTTC = (priceHT, TVA = 0.2) => {
+    if(isNaN(priceHT) || isNaN(TVA)){
+        throw new Error("Veuillez prendre un tableau d'objet valide");
+    }
+    return parseFloat((priceHT + (priceHT * TVA)).toFixed(2));
+}
+
+
 isTabObject = (tab) => {
     if (Array.isArray(tab)) {
         let estTableauObjets = true;
@@ -31,3 +39,5 @@ isTabObject = (tab) => {
     }
     return false
 }
+
+module.exports = {getPriceTTCObject, getPriceTTC}
