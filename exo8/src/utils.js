@@ -5,10 +5,7 @@ const users = [
     'Elie'
 ];
 
-getPosRandom = (borne) => {
-    const rand = Math.floor(Math.random() * borne);
-    return rand;
-}
+getPosRandom = (borne) => Math.floor(Math.random() * borne);
 
 mixUser = () => {
     let usersCopy = [...users];
@@ -18,20 +15,18 @@ mixUser = () => {
         while(pos1 === pos2){
             pos1 = getPosRandom(usersCopy.length);
             pos2 = getPosRandom(usersCopy.length);
-            
         }
 
         let tmp = usersCopy[pos1];
         usersCopy[pos1] = usersCopy[pos2];
         usersCopy[pos2] = tmp;
-
     }
     return usersCopy;
 }
 
 afficheUserHtml = (tab = users) => {
     const usersList = tab.map(user => `<li>${user}</li>`).join('');
-    const content = `
+    return `
         <!Doctype html>
         <html>
             <head>
@@ -46,7 +41,6 @@ afficheUserHtml = (tab = users) => {
             </body>
         </html>
     `
-    return content;
 }
 
 afficheMixUserHtml = () => afficheUserHtml(mixUser());
