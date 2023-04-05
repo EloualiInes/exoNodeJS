@@ -14,6 +14,9 @@ const routes = (url,reqUrl, res) => {
     const query = reqUrl.split('/')[2];
     const query2 = reqUrl.split('?')[1];
     const search = new URLSearchParams(query2).get('q');
+
+    console.log("query de", query);
+    console.log("search de", search);
     if(url === "all"){
         const paths = [
             "/Data/alan.json", 
@@ -27,12 +30,23 @@ const routes = (url,reqUrl, res) => {
         readJSONFiles(paths,res);
     }
     if(url.includes("search") && (query || search)){
+        console.log("query", query);
+        console.log("search", search);
         if(query) readJSON(`/Data/${query}.json`, res)
         else readJSON(`/Data/${search.toLowerCase()}.json`, res)
     }
     if(url === ""){
         res.writeHead(200);
-        res.end(afficheUserHtml());
+        const routes = [
+            "alan", 
+            "alice",
+            "antoine",
+            "bernard",
+            "clarisse",
+            "sonia",
+            "sophie"
+        ];
+        res.end(afficheUserHtmlList(routes));
     }
 }
 
@@ -91,6 +105,33 @@ const readJSONFiles = (paths, res) => {
                     <label for="search">Recherche :</label>
                     <input type="text" id="search" name="q" placeholder="Entrez votre recherche...">
                     <button type="submit">Rechercher</button>
+                </form>
+
+            </body>
+        </html>
+    `
+}
+
+afficheUserHtmlList = (routes) => {
+    const routeList = routes.map(route => `<option value="${route}">${route}</option>`).join('');
+    return `
+        <!Doctype html>
+        <html>
+            <head>
+                <meta charset="utf-8"/>
+                <title>Page test</title>
+            </head>
+            <body>
+                <p> Bienvenue sur la page test</p>
+                <ul>
+                    <a href="/all">Toutes les données</a>
+                </ul>
+                <form action="/search" method="get">
+                    <label for="route">Sélectionnez une page :</label>
+                    <select id="search" name="q">
+                    ${routeList}
+                    </select>
+                    <button type="submit">Aller à la page</button>
                 </form>
 
             </body>
