@@ -148,6 +148,6 @@ const addStudent = (tab) => {
     
 }
 
-addStudent(tab);
-readFileSync(nameFile)
 
+// addStudent(tab);
+// readFileSync(nameFile)

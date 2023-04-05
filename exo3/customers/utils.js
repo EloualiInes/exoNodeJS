@@ -20,7 +20,7 @@ getPriceTTCObject = (objectHt, TVA = 0.2) => {
 
 getPriceTTC = (priceHT, TVA = 0.2) => {
     if(isNaN(priceHT) || isNaN(TVA)){
-        throw new Error("Veuillez prendre un tableau d'objet valide");
+        throw new Error("Veuillez un nombre valide");
     }
     return parseFloat((priceHT + (priceHT * TVA)).toFixed(2));
 }
