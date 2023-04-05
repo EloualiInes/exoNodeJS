@@ -7,10 +7,16 @@ const server = http.createServer((req, res) => {
     // Routes
     const url = req.url.replace('/', '');
     if(url === "shuffle"){
+        res.setHeader("Content-type","text/html;charset=utf8");
         res.end(afficheMixUserHtml());
         return;
     }
-    res.end(afficheUserHtml())
+    if(url === ""){
+        res.setHeader("Content-type","text/html;charset=utf8");
+        res.end(afficheUserHtml())
+        return;
+    }
+    
 })
 
 server.listen(PORT, HOST, () => {
