@@ -7,32 +7,20 @@ const { PIERRE, PAPIER, CISEAU } = process.env;
 
 // Initialise le jeu
 const initGame = async () => {
-  let playGame = null;
   const writeStream = fs.createWriteStream("chifumi.txt");
-  process.stdout.write("Voulez-vous lancer une partie ? [oui/non] ");
-
+  process.stdout.write("Combien de parties entre les ordis : ");
+  
+  
   return await new Promise((resolve, reject) => {
     process.stdin.on("data", (input) => {
-      if (!playGame) {
-        playGame = input.toString().trim();
-        let regex = new RegExp("^.*(oui|non).*$", "i");
-        // On vérifie la réponse de l'utilisateur
-        if (typeof playGame === "string" && regex.test(playGame)) {
-          if (new RegExp("^.*oui.*$", "i").test(playGame.trim())) {
-            process.stdout.write("Combien de parties entre les ordis : ");
-          } else {
-            console.log("Have a great day!");
-            writeStream.on("finish", () => {
-              resolve();
-            });
-            process.exit(0);
-          }
-        }
-      } else {
         const answer = input.toString().trim();
         let borne = answer;
         // gestion simplette d'une erreur de saisie de l'utilisateur
-        if (isNaN(answer)) {
+        if(answer.includes("stop")){
+            console.log("Have a great day!");
+            process.exit(0);
+        }
+        else if (isNaN(answer)) {
           console.log("pas sympa, j'initialise à 10 naah !");
           borne = 10;
         } else borne = parseInt(answer);
@@ -49,8 +37,8 @@ const initGame = async () => {
         writeStream.on("finish", () => {
           resolve();
         });
-      }
-    });
+      
+    })
   });
 };
 
@@ -83,6 +71,11 @@ const game = async () => {
       console.log(`   >>> ${resultWinner(res)}\n`);
     }
     console.table(tableauScore);
+    if(tableauScore.joueur1 > tableauScore.joueur2)
+        console.log("Le joueur 1 a gagné")
+    else if(tableauScore.joueur1 < tableauScore.joueur2)
+        console.log("Le joueur 2 a gagné")
+    else console.log("Egalité parfaite !")
     game();
   });
 };
@@ -128,5 +121,7 @@ getRegex = (str) => {
   for (let i = 0; i < str.length; i++) regexFinal += `${str[i]}\\s*`;
   return new RegExp(regexFinal, "i");
 };
+
+
 
 game();
