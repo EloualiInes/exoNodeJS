@@ -22,6 +22,9 @@ const initGame = async () => {
             process.stdout.write("Combien de parties entre les ordis : ");
           } else {
             console.log("Have a great day!");
+            writeStream.on("finish", () => {
+              resolve();
+            });
             process.exit(0);
           }
         }
@@ -80,7 +83,7 @@ const game = async () => {
       console.log(`   >>> ${resultWinner(res)}\n`);
     }
     console.table(tableauScore);
-    process.exit(0);
+    game();
   });
 };
 
