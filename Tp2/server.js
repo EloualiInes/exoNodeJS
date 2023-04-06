@@ -49,7 +49,36 @@ const server = http.createServer((req,res) => {
     
         return;
       }
+    else if (url === "users") {
+        res.writeHead(200, { "Content-Type": "text/html" });
+        res.end(afficheStudentsHtmlList());
+    
+        return;
+      }
     
 }).listen(PORT, HOST, () => {
     console.log(`Server running at http://${HOST}:${PORT}/`)
 })
+
+afficheStudentsHtmlList = () => {
+  const studentsList = students.map(student => `<li>${student.name}</li>`).join('');
+  return `
+      <!Doctype html>
+      <html>
+          <head>
+              <meta charset="utf-8"/>
+              <title>Page test</title>
+          </head>
+          <body>
+              <p> Bienvenue sur la page test</p>
+              <ul>
+                  <a href="/">Home</a>
+              </ul>
+              <ul>
+                  ${studentsList}
+              </ul>
+
+          </body>
+      </html>
+  `
+}
