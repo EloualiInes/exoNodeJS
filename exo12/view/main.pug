@@ -1,0 +1,13 @@
+extends layout.pug
+block content 
+    main
+        .container 
+            h1 Jean Dupont 
+            p Bienvenue sur mon portfolio
+            p Contactez-moi à l'adresse email suivante :
+            output#generate-email
+block scripts
+    | (function preventSpam() {
+    |     const b64encodedEmail = 'amVhbi5kdXBvbnRAZ21haWwuY29t';
+    |     document.getElementById('generate-email').textContent = atob(b64encodedEmail);
+    | })();

@@ -1,0 +1,8 @@
+-const eltsFooter = ["Mentions légales", "CGU", "Réclamations"];
+
+mixin menuItem(url, title) 
+    li:a(href=url)= title
+
+ul
+    each item in eltsFooter
+        +menuItem("#", item)

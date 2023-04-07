@@ -1,0 +1,7 @@
+
+mixin menuItem(url, title) 
+    li:a(href=url)= title
+
+nav:ul#users
+    each item in menuItems
+        +menuItem(item.path, item.title)

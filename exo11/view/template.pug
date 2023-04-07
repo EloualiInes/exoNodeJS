@@ -1,0 +1,14 @@
+//- <div class="user-card">
+//-     <h4>Jean DUPONT <small>(36 ans)</small></h4>
+//-     <p>Né le 18/04/1986</p>
+//-     <p>Vit à <strong>Champs-sur-Marne, 77420</strong></p>
+//-     <span class="badge-admin">Est administrateur</span>
+//- </div>
+
+- const {name, age, birthdate, location, isAdmin} = loggedUser
+.user-card
+    h4 #{name.first} #{name.last.toUpperCase()}<small>(#{age} ans)</small>
+    p Né le #{birthdate.toLocale}
+    p Vit à <strong>#{location.city}, #{location.zipcode}</strong>
+    if isAdmin
+        span.badge-admin Est administrateur
