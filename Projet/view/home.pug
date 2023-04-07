@@ -1,0 +1,8 @@
+extends layout.pug
+block content 
+    form(action="/add", method="post")
+        label(for="name") Name :
+        input(type="text", id="name", name="name", placeholder="Entrez votre nom...")
+        label(for="birthday") Date :
+        input(type="date", id="date", name="date", placeholder="Entrez votre date...")
+        button(type="submit") ajouter

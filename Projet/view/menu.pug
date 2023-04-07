@@ -1,0 +1,7 @@
+- const items = [ { path : "/", name : "Home"},{ path : "/users", name : "Users"}]
+mixin menuItem(url, title) 
+    li: a(href=url)&attributes(attributes)= title
+
+nav: ul
+    each item in items
+        +menuItem(item.path, item.name)
