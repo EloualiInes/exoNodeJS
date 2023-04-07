@@ -53,10 +53,29 @@ const routes = (req, res) => {
         const context = { studentsFr }
         displayPagePug(res, "./view/users.pug", context)
     }
+    if(url.startsWith("delete") && req.method === "POST"){
+        console.log("data: ",req.url.split('?')[1])
+        const name = new URLSearchParams(req.url.split('?')[1]).get('name');
+        deleteStudent(name, students);
+        res.writeHead(302, {
+          'Location': '/users'
+        });
+        res.end();
+    }
 }
 
+const deleteStudent = (name, students) => {
+    for(let i=0; i<students.length; i++){
+        if(students[i].name === name){
+            students.splice(i, 1);
+            break;
+        }
+    }
+}
+
+
 const displayPagePug = (res, path, data = {}) => {
-    console.log("data: ",data)
+    
     try{
         const compileTemplate = pug.compileFile(path)
         const result = compileTemplate(data);

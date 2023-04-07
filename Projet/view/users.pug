@@ -5,11 +5,7 @@ block content
             li(id=`student-${student.name}`)
                 p. 
                     #{student.name} #{student.birth} 
-                button(onclick="deleteStudent('" + student.name + "', '" + JSON.stringify(studentsFr) + "')") X
-    script. 
-        deleteStudent = (name, studentsFrStr) => {
-            let studentsFr = JSON.parse(studentsFrStr);
-            studentsFr = studentsFr.filter(student => student.name !== name);
-            const studentElement = document.getElementById(`student-${name}`);
-            studentElement.parentNode.removeChild(studentElement);
-        }
+                form(action=`/delete?name=${student.name}`, method="POST")
+                    input(type="hidden", name="_method", value="DELETE")
+                    button(type="submit") X 
+
