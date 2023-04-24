@@ -1,0 +1,9 @@
+- const items = [ "General", "Gaming", "Random"]
+mixin channels(title) 
+    li: = title
+
+nav(class="lateralBarre")
+    p Channels
+    ul
+        each item in items
+            +channels(item)

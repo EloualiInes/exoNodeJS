@@ -1,0 +1,8 @@
+extends layout.pug
+block content 
+    div(class="content")
+        include lateralBarre.pug
+        include discussions.pug
+
+    script(src="/socket.io/socket.io.js")
+    script(src="/scripts/app.js")
