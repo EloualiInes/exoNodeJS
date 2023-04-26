@@ -3,7 +3,11 @@ block content
     div(class="content")
         include lateralBarre.pug
         include discussions.pug
-        ul#userList
+        div#listUserConnected
+            p Utilisateurs connectés
+            ul#userList
 
+    script(src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin")
     script(src="/socket.io/socket.io.js")
     script(src="/scripts/app.js")
+    

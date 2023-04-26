@@ -1,9 +1,12 @@
 - const items = [ "General", "Gaming", "Random"]
-mixin channels(title) 
-    li: = title
+mixin channels(title, v) 
+    if title === "General"
+        li.active(data-value=v)= title
+    else
+        li(data-value=v)= title
 
 nav(class="lateralBarre")
     p Channels
-    ul
-        each item in items
-            +channels(item)
+    ul#channelList
+        each item, index in items
+            +channels(item, `channel${index+1}`)
